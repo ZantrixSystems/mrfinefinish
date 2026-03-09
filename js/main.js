@@ -75,13 +75,80 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  const revealTargets = document.querySelectorAll(
-    ".section, .hero-card, .panel, .card, .service-card, .review-card, .contact-card, .stat-card, .work-card, .social-card, .page-hero-panel"
-  );
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const compactMotion = window.matchMedia("(max-width: 760px)").matches;
 
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+  const revealSelectors = [
+    ".hero-card",
+    ".page-hero-panel",
+    ".section-head",
+    ".split > div",
+    ".panel",
+    ".card",
+    ".service-card",
+    ".review-card",
+    ".contact-card",
+    ".stat-card",
+    ".work-card",
+    ".social-card",
+    ".photo-placeholder",
+    ".quote-band"
+  ];
+
+  const revealTargets = Array.from(document.querySelectorAll(revealSelectors.join(", ")));
+
+  const staggerGroups = [
+    ".services-grid",
+    ".grid-3",
+    ".grid-4",
+    ".reviews-grid",
+    ".work-grid",
+    ".social-grid",
+    ".trust-strip",
+    ".badge-row",
+    ".hero-meta",
+    ".fallback-grid",
+    ".pill-list",
+    ".form-row"
+  ];
+
+  staggerGroups.forEach(function (selector) {
+    document.querySelectorAll(selector).forEach(function (group) {
+      const children = Array.from(group.children);
+      children.forEach(function (child, index) {
+        if (!child.matches(".reveal") && !child.matches(".reveal-soft")) {
+          child.classList.add("reveal-soft");
+        }
+
+        const delayStep = compactMotion ? 32 : 58;
+        const maxDelay = compactMotion ? 180 : 360;
+        const delay = Math.min(index * delayStep, maxDelay);
+        child.style.setProperty("--reveal-delay", delay + "ms");
+
+        if (!revealTargets.includes(child)) {
+          revealTargets.push(child);
+        }
+      });
+    });
+  });
+
+  document.querySelectorAll(".section").forEach(function (section, index) {
+    if (!section.style.getPropertyValue("--reveal-delay")) {
+      const baseDelay = compactMotion ? 0 : Math.min(index * 30, 140);
+      section.style.setProperty("--reveal-delay", baseDelay + "ms");
+    }
+
+    if (!section.classList.contains("reveal") && !section.classList.contains("reveal-soft")) {
+      section.classList.add("reveal");
+      revealTargets.push(section);
+    }
+  });
+
+  if (!reduceMotion && "IntersectionObserver" in window) {
     revealTargets.forEach(function (el) {
-      el.classList.add("reveal");
+      if (!el.classList.contains("reveal") && !el.classList.contains("reveal-soft")) {
+        el.classList.add("reveal");
+      }
     });
 
     const observer = new IntersectionObserver(
@@ -93,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         });
       },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.12 }
+      { rootMargin: "0px 0px -9% 0px", threshold: 0.14 }
     );
 
     revealTargets.forEach(function (el) {
@@ -103,5 +170,51 @@ document.addEventListener("DOMContentLoaded", function () {
     revealTargets.forEach(function (el) {
       el.classList.add("is-visible");
     });
+  }
+
+  if (!reduceMotion && !compactMotion) {
+    const parallaxTargets = document.querySelectorAll(
+      ".hero-visual, .hero-visual-inner, .quote-band, .photo-placeholder, .work-image"
+    );
+
+    parallaxTargets.forEach(function (el) {
+      el.classList.add("parallax-item");
+      el.style.setProperty("--parallax-y", "0px");
+    });
+
+    const updateParallax = function () {
+      const viewportHeight = window.innerHeight || 1;
+
+      parallaxTargets.forEach(function (el, index) {
+        const rect = el.getBoundingClientRect();
+        if (rect.bottom < -120 || rect.top > viewportHeight + 120) {
+          return;
+        }
+
+        const centerDelta = rect.top + rect.height / 2 - viewportHeight / 2;
+        const progress = centerDelta / viewportHeight;
+        const maxShift = index % 2 === 0 ? 10 : 7;
+        const y = Math.max(-maxShift, Math.min(maxShift, -progress * maxShift));
+
+        el.style.setProperty("--parallax-y", y.toFixed(2) + "px");
+      });
+    };
+
+    updateParallax();
+
+    let ticking = false;
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            updateParallax();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      },
+      { passive: true }
+    );
   }
 });
