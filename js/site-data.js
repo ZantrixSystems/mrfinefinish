@@ -8,6 +8,10 @@ window.siteData = {
   serviceArea: 'Service area: update this with your town, city, and nearby areas.',
   hours: 'Monday to Saturday, 8:00am to 6:00pm',
   instagramUrl: 'https://www.instagram.com/mrfinefinish',
+  instagramPostUrls: [
+    // Add public post or reel URLs here to render Instagram embeds on the site.
+    // Example: 'https://www.instagram.com/p/XXXXXXXXXXX/'
+  ],
   tiktokUrl: 'https://www.tiktok.com/@mr.fine.finish',
   trustpilotUrl: '#',
   year: new Date().getFullYear()
