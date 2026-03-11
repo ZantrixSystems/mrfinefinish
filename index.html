@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mr Fine Finish | Luxury Painting, Decorating & Plastering</title>
   <meta name="description" content="Mr Fine Finish offers premium painting, decorating, plastering and finishing work with a clean, reliable and detail focused service.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
@@ -14,8 +15,11 @@
   <header class="topbar">
     <div class="container nav">
       <a class="brand" href="index.html">
-        <span class="brand-mark" data-business-name>Mr Fine Finish</span>
-        <span class="brand-sub">Painting, decorating &amp; plastering</span>
+        <img class="brand-logo" src="assets/logo-full.svg" alt="Mr Fine Finish logo">
+        <span class="brand-copy">
+          <span class="brand-mark" data-business-name>Mr Fine Finish</span>
+          <span class="brand-sub">Painting, decorating &amp; plastering</span>
+        </span>
       </a>
       <button class="menu-toggle" data-menu-toggle aria-label="Open menu" aria-expanded="false">&#9776;</button>
       <nav class="nav-links" data-nav-links>
@@ -32,21 +36,39 @@
   <main>
     <section class="hero">
       <div class="container">
-        <div class="hero-card">
-          <div class="eyebrow">Premium local finishing work</div>
-          <div class="hero-copy">
-            <h1>Clean painting, decorating and plastering with a modern premium finish.</h1>
-            <p data-tagline>Premium painting, decorating and plastering with a clean, modern finish.</p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="contact.html">Get a Quote</a>
-              <a class="button button-secondary" href="work.html">View Our Work</a>
-            </div>
-            <div class="hero-meta">
-              <div><strong>Detail focused</strong><span class="small-text">Prepared correctly and finished neatly.</span></div>
-              <div><strong>Reliable service</strong><span class="small-text">Clear communication from first call to final finish.</span></div>
-              <div><strong>Smaller jobs welcome</strong><span class="small-text">Ideal for refreshes, repairs and finishing touches.</span></div>
+        <div class="hero-grid">
+          <div class="hero-card hero-card-main">
+            <div class="eyebrow">Premium local finishing work</div>
+            <div class="hero-copy">
+              <h1>Clean painting, decorating and plastering with a modern premium finish.</h1>
+              <p data-tagline>Premium painting, decorating and plastering with a clean, modern finish.</p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="contact.html">Get a Quote</a>
+                <a class="button button-secondary" href="work.html">View Our Work</a>
+              </div>
+              <div class="hero-meta">
+                <div><strong>Detail focused</strong><span class="small-text">Prepared correctly and finished neatly.</span></div>
+                <div><strong>Reliable service</strong><span class="small-text">Clear communication from first call to final finish.</span></div>
+                <div><strong>Smaller jobs welcome</strong><span class="small-text">Ideal for refreshes, repairs and finishing touches.</span></div>
+              </div>
             </div>
           </div>
+          <aside class="hero-card hero-visual" aria-label="Mr Fine Finish brand panel">
+            <div class="hero-visual-inner hero-brand-lockup">
+              <div class="hero-logo-frame">
+                <img class="hero-logo" src="assets/logo-full.svg" alt="Mr Fine Finish Painting and Plastering logo">
+              </div>
+              <div class="hero-visual-copy">
+                <strong>Recognisable, trade-specific branding that fits the service.</strong>
+                <p>The logo works best as a trust signal in the header, a hero anchor on the homepage, and a simpler mark in the browser tab.</p>
+                <div class="hero-highlights">
+                  <span>Painting</span>
+                  <span>Decorating</span>
+                  <span>Plastering</span>
+                </div>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
@@ -141,8 +163,13 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <h3 data-business-name>Mr Fine Finish</h3>
-          <p class="small-text" data-tagline>Premium painting, decorating and plastering with a clean, modern finish.</p>
+          <div class="footer-brand">
+            <img class="footer-logo" src="assets/logo-full.svg" alt="Mr Fine Finish logo">
+            <div>
+              <h3 data-business-name>Mr Fine Finish</h3>
+              <p class="small-text" data-tagline>Premium painting, decorating and plastering with a clean, modern finish.</p>
+            </div>
+          </div>
           <p class="small-text" data-service-area>Service area: update this with your town, city, and nearby areas.</p>
         </div>
         <div>
