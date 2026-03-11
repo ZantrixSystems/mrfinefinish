@@ -21,7 +21,6 @@
         <a class="active" href="work.html">Our Work</a>
         <a href="reviews.html">Reviews</a>
         <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
         <a class="button button-primary" href="contact.html">Get a Quote</a>
       </nav>
     </div>
@@ -38,7 +37,7 @@
 
     <section class="section">
       <div class="container split">
-        <div>
+        <div class="panel split-copy">
           <div class="eyebrow">TikTok</div>
           <h2 class="display-title">See recent updates and finished jobs.</h2>
           <p>TikTok is the main place for current examples so this website does not need manual gallery updates.</p>
@@ -59,16 +58,17 @@
 
     <section class="section">
       <div class="container split">
-        <div class="panel">
-          <div class="embed-box">
-            <p class="small-text">Instagram can be linked directly or replaced with an embed snippet later.</p>
-          </div>
-        </div>
-        <div>
+        <div class="panel split-copy">
           <div class="eyebrow">Instagram</div>
           <h2 class="display-title">Follow polished room photos and detail work.</h2>
           <p>Use Instagram for before and after posts, detail shots and finished room visuals.</p>
-          <p><a class="button button-primary" data-instagram-link href="https://www.instagram.com/mrfinefinish" target="_blank" rel="noreferrer">Open Instagram</a></p>
+          <p class="small-text">Recent posts are embedded below for quick viewing on desktop and mobile.</p>
+          <p class="embed-note" data-instagram-fallback hidden><a data-instagram-link href="https://www.instagram.com/mrfinefinish" target="_blank" rel="noreferrer">View Instagram profile</a></p>
+        </div>
+        <div class="panel">
+          <div class="embed-box">
+            <div class="instagram-feed" data-instagram-feed data-post-limit="3"></div>
+          </div>
         </div>
       </div>
     </section>

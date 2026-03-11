@@ -42,6 +42,60 @@ document.addEventListener("DOMContentLoaded", function () {
     el.setAttribute("href", data.trustpilotUrl || "#");
   });
 
+  const instagramFeeds = Array.from(document.querySelectorAll("[data-instagram-feed]"));
+  if (instagramFeeds.length) {
+    const instagramFallbacks = Array.from(document.querySelectorAll("[data-instagram-fallback]"));
+    const postUrls = Array.isArray(data.instagramPostUrls)
+      ? data.instagramPostUrls.filter(function (url) {
+          return typeof url === "string" && /instagram\.com\/(p|reel)\//i.test(url);
+        })
+      : [];
+
+    const showFallback = function (show) {
+      instagramFallbacks.forEach(function (el) {
+        el.hidden = !show;
+      });
+    };
+
+    if (!postUrls.length) {
+      showFallback(true);
+    } else {
+      instagramFeeds.forEach(function (feed) {
+        const limit = Number(feed.getAttribute("data-post-limit")) || 2;
+        const posts = postUrls.slice(0, Math.max(1, limit));
+        const markup = posts
+          .map(function (url) {
+            return (
+              '<blockquote class="instagram-media" data-instgrm-permalink="' +
+              url +
+              '?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14"></blockquote>'
+            );
+          })
+          .join("");
+
+        feed.innerHTML = markup;
+      });
+
+      showFallback(false);
+
+      const processEmbeds = function () {
+        if (window.instgrm && window.instgrm.Embeds && typeof window.instgrm.Embeds.process === "function") {
+          window.instgrm.Embeds.process();
+        }
+      };
+
+      if (!document.querySelector('script[src="https://www.instagram.com/embed.js"]')) {
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = "https://www.instagram.com/embed.js";
+        script.onload = processEmbeds;
+        document.body.appendChild(script);
+      } else {
+        processEmbeds();
+      }
+    }
+  }
+
   const toggle = document.querySelector("[data-menu-toggle]");
   const menu = document.querySelector("[data-nav-links]");
 
