@@ -478,6 +478,7 @@ textarea:focus-visible {
   box-shadow: 0 20px 38px rgba(11, 45, 109, 0.14);
   max-width: 340px;
   margin: 0 auto;
+  justify-self: center;
 }
 
 .hero-logo {
@@ -490,7 +491,8 @@ textarea:focus-visible {
   gap: 0.8rem;
   color: var(--brand-blue);
   width: min(100%, 340px);
-  margin: 0 auto;
+  margin: 0;
+  justify-self: start;
   justify-items: stretch;
   text-align: left;
 }
