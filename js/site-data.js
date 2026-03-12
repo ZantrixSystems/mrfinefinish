@@ -4,6 +4,7 @@ window.siteData = {
   tagline: 'Premium painting, decorating and plastering with a clean, modern finish.',
   phoneDisplay: '+44 7493 749547',
   phoneRaw: '+447493749547',
+  whatsappUrl: 'https://wa.me/447493749547',
   email: 'hello@mrfinefinish.co.uk',
   serviceArea: 'Service area: update this with your town, city, and nearby areas.',
   hours: 'Monday to Saturday, 8:00am to 6:00pm',
