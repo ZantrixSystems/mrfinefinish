@@ -400,7 +400,9 @@ textarea:focus-visible {
 
 .hero-card-main {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   background:
     radial-gradient(circle at 90% 12%, rgba(15, 87, 191, 0.12), transparent 22%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.97), rgba(247, 250, 255, 0.9));
@@ -430,7 +432,7 @@ textarea:focus-visible {
 .hero-visual {
   overflow: hidden;
   min-height: 100%;
-  padding: 1rem;
+  padding: 0.9rem;
   position: relative;
 }
 
@@ -449,7 +451,7 @@ textarea:focus-visible {
 .hero-visual-inner {
   min-height: 100%;
   border-radius: calc(var(--radius) - 9px);
-  padding: 1.2rem;
+  padding: 1rem;
   background:
     linear-gradient(150deg, rgba(47, 78, 104, 0.22), rgba(154, 122, 85, 0.14) 42%, rgba(255, 255, 255, 0.45)),
     linear-gradient(145deg, #dce6ee 0%, #eef2f4 42%, #d8e0e6 100%);
@@ -473,10 +475,12 @@ textarea:focus-visible {
   background: rgba(255, 255, 255, 0.76);
   border: 1px solid rgba(255, 255, 255, 0.72);
   box-shadow: 0 20px 38px rgba(11, 45, 109, 0.14);
+  max-width: 340px;
+  margin: 0 auto;
 }
 
 .hero-logo {
-  width: min(100%, 420px);
+  width: min(100%, 300px);
   margin: 0 auto;
 }
 
@@ -484,6 +488,8 @@ textarea:focus-visible {
   display: grid;
   gap: 0.8rem;
   color: var(--brand-blue);
+  max-width: 340px;
+  margin: 0 auto;
 }
 
 .hero-visual-copy p {
