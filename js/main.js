@@ -38,6 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll("[data-tiktok-link]").forEach(function (el) {
     el.setAttribute("href", data.tiktokUrl || "#");
   });
+  document.querySelectorAll("[data-facebook-link]").forEach(function (el) {
+    el.setAttribute("href", data.facebookUrl || "#");
+  });
   document.querySelectorAll("[data-trustpilot-link]").forEach(function (el) {
     el.setAttribute("href", data.trustpilotUrl || "#");
   });

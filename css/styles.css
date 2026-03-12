@@ -618,6 +618,39 @@ textarea:focus-visible {
   border-radius: 20px;
 }
 
+.about-photo {
+  margin: 0;
+  height: 100%;
+}
+
+.about-photo-frame {
+  min-height: 540px;
+  height: 100%;
+  border-radius: calc(var(--radius) - 8px);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow);
+  background:
+    linear-gradient(180deg, rgba(17, 24, 36, 0.08), rgba(17, 24, 36, 0.24)),
+    linear-gradient(145deg, rgba(47, 78, 104, 0.18), rgba(154, 122, 85, 0.08)),
+    url("../assets/about-mohammed.jpg");
+  background-size: cover;
+  background-position: 26% center;
+  overflow: hidden;
+  position: relative;
+}
+
+.about-photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: auto 1rem 1rem auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(6px);
+}
+
 .split {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
@@ -858,6 +891,43 @@ textarea {
 
 .footer a:hover { color: var(--text); }
 
+.footer-social {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.social-icon-link {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(17, 24, 36, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-blue);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.social-icon-link::after {
+  display: none;
+}
+
+.social-icon-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(47, 78, 104, 0.28);
+  background: #fff;
+  box-shadow: 0 16px 26px rgba(23, 28, 35, 0.14);
+}
+
+.social-icon-link svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
 .footer-bottom {
   margin-top: 1.35rem;
   padding-top: 1.1rem;
@@ -997,6 +1067,10 @@ textarea {
   .hero-card { padding: 1.24rem; }
 
   .hero-actions .button { width: 100%; }
+  .about-photo-frame {
+    min-height: 420px;
+    background-position: 22% center;
+  }
   .footer-brand { align-items: flex-start; }
   .footer-logo { width: 72px; }
   .footer-bottom { flex-direction: column; }
