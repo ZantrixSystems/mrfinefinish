@@ -489,10 +489,10 @@ textarea:focus-visible {
   display: grid;
   gap: 0.8rem;
   color: var(--brand-blue);
-  max-width: 340px;
+  width: min(100%, 340px);
   margin: 0 auto;
-  justify-items: center;
-  text-align: center;
+  justify-items: stretch;
+  text-align: right;
 }
 
 .hero-visual-copy p {
@@ -504,7 +504,7 @@ textarea:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .hero-highlights span {
