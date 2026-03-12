@@ -38,6 +38,12 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll("[data-tiktok-link]").forEach(function (el) {
     el.setAttribute("href", data.tiktokUrl || "#");
   });
+  document.querySelectorAll("[data-facebook-link]").forEach(function (el) {
+    el.setAttribute("href", data.facebookUrl || "#");
+  });
+  document.querySelectorAll("[data-whatsapp-link]").forEach(function (el) {
+    el.setAttribute("href", data.whatsappUrl || ("https://wa.me/" + String(data.phoneRaw || "").replace(/\D/g, "")));
+  });
   document.querySelectorAll("[data-trustpilot-link]").forEach(function (el) {
     el.setAttribute("href", data.trustpilotUrl || "#");
   });

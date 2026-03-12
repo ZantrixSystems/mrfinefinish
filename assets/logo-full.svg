@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="title desc">
+  <title id="title">Mr Fine Finish logo</title>
+  <desc id="desc">A house, ladder, and paint roller above the Mr Fine Finish Painting and Plastering wordmark.</desc>
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f57bf" />
+      <stop offset="100%" stop-color="#0b2d6d" />
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff9a1f" />
+      <stop offset="100%" stop-color="#ef6a00" />
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d8d57" />
+      <stop offset="100%" stop-color="#9bd540" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#08224f" flood-opacity="0.18" />
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <path d="M208 146 359 40l151 106v93H208z" fill="url(#blueGrad)" />
+    <rect x="397" y="72" width="34" height="58" rx="4" fill="#0f57bf" />
+    <rect x="318" y="136" width="74" height="74" rx="8" fill="#fff" />
+    <path d="M355 136v74M318 173h74" stroke="#0b2d6d" stroke-width="9" stroke-linecap="round" />
+
+    <g transform="rotate(7 165 146)">
+      <rect x="126" y="26" width="18" height="194" rx="8" fill="url(#orangeGrad)" />
+      <rect x="184" y="26" width="18" height="194" rx="8" fill="url(#orangeGrad)" />
+      <rect x="131" y="58" width="65" height="10" rx="5" fill="#0b2d6d" />
+      <rect x="131" y="104" width="65" height="10" rx="5" fill="#0b2d6d" />
+      <rect x="131" y="150" width="65" height="10" rx="5" fill="#0b2d6d" />
+    </g>
+
+    <g transform="translate(514 96) rotate(5)">
+      <rect x="0" y="0" width="128" height="44" rx="22" fill="url(#greenGrad)" />
+      <rect x="16" y="8" width="112" height="14" rx="7" fill="#d9f2b3" opacity="0.8" />
+      <path d="M10 22c0-18 14-32 32-32 18 0 32 14 32 32 0 18-14 32-32 32" fill="none" stroke="#0c7a57" stroke-width="12" stroke-linecap="round" />
+      <path d="M30 44h38v24h15v36" fill="none" stroke="#0b2d6d" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <rect x="98" y="228" width="526" height="86" rx="12" fill="#0b2d6d" />
+    <rect x="271" y="228" width="170" height="86" fill="#ef7d00" />
+    <text x="182" y="284" font-family="Arial, sans-serif" font-size="54" font-weight="800" text-anchor="middle" fill="#ffffff">MR</text>
+    <text x="356" y="284" font-family="Arial, sans-serif" font-size="54" font-weight="800" text-anchor="middle" fill="#ffffff">FINE</text>
+    <text x="533" y="284" font-family="Arial, sans-serif" font-size="54" font-weight="800" text-anchor="middle" fill="#ffffff">FINISH</text>
+
+    <rect x="148" y="316" width="426" height="52" rx="10" fill="#0a2356" />
+    <text x="361" y="351" font-family="Arial, sans-serif" font-size="31" font-weight="700" text-anchor="middle" fill="#ffffff">PAINTING &amp; PLASTERING</text>
+
+    <g transform="translate(295 336) rotate(22)">
+      <rect x="-28" y="30" width="34" height="92" rx="12" fill="#165ec0" />
+      <rect x="-22" y="44" width="22" height="28" rx="7" fill="#ef7d00" />
+      <rect x="-32" y="-12" width="106" height="26" rx="8" fill="#f0f4fb" stroke="#0b2d6d" stroke-width="3" />
+      <path d="M58 -12h18v52H58" fill="#165ec0" />
+      <path d="M76 -12h14v52H76" fill="#ef7d00" />
+      <path d="M90 -12h14v52H90" fill="#ffd166" />
+    </g>
+  </g>
+</svg>

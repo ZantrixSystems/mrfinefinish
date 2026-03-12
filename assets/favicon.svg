@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Mr Fine Finish favicon</title>
+  <defs>
+    <linearGradient id="roof" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f57bf" />
+      <stop offset="100%" stop-color="#0b2d6d" />
+    </linearGradient>
+    <linearGradient id="roller" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d8d57" />
+      <stop offset="100%" stop-color="#9bd540" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#f7f4ee" />
+  <path d="M12 31 32 16l20 15v17H12z" fill="url(#roof)" />
+  <rect x="28" y="33" width="8" height="15" rx="2" fill="#ffffff" />
+  <rect x="40" y="19" width="4" height="9" rx="1" fill="#0f57bf" />
+  <rect x="11" y="16" width="4" height="25" rx="2" fill="#ef7d00" transform="rotate(8 13 28.5)" />
+  <rect x="20" y="16" width="4" height="25" rx="2" fill="#ef7d00" transform="rotate(8 22 28.5)" />
+  <rect x="11" y="24" width="12" height="3" rx="1.5" fill="#0b2d6d" transform="rotate(8 17 25.5)" />
+  <rect x="10" y="31" width="13" height="3" rx="1.5" fill="#0b2d6d" transform="rotate(8 16.5 32.5)" />
+  <rect x="43" y="20" width="14" height="6" rx="3" fill="url(#roller)" />
+  <path d="M44 23c0-4 3-7 7-7" fill="none" stroke="#0c7a57" stroke-width="3" stroke-linecap="round" />
+  <path d="M49 26h3v6h3v8" fill="none" stroke="#0b2d6d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
