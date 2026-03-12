@@ -347,7 +347,7 @@ textarea:focus-visible {
 .hero-grid {
   display: grid;
   gap: 1.35rem;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   align-items: stretch;
 }
 
@@ -399,6 +399,7 @@ textarea:focus-visible {
 .hero-copy { max-width: 680px; }
 
 .hero-card-main {
+  grid-column: 2;
   background:
     radial-gradient(circle at 90% 12%, rgba(15, 87, 191, 0.12), transparent 22%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.97), rgba(247, 250, 255, 0.9));
@@ -426,6 +427,7 @@ textarea:focus-visible {
 .hero-meta strong { display: block; font-size: 1rem; }
 
 .hero-visual {
+  grid-column: 1;
   overflow: hidden;
   min-height: 100%;
   padding: 1rem;
@@ -1079,6 +1081,11 @@ textarea {
   .badge-row,
   .trust-strip {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-card-main,
+  .hero-visual {
+    grid-column: auto;
   }
 
   .hero-meta { grid-template-columns: 1fr; }
