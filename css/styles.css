@@ -466,9 +466,7 @@ textarea:focus-visible {
   display: grid;
   gap: 1.2rem;
   align-content: end;
-  width: min(100%, 340px);
-  margin: 0 auto;
-  justify-items: stretch;
+  justify-items: center;
   min-height: 100%;
 }
 
@@ -478,10 +476,9 @@ textarea:focus-visible {
   background: rgba(255, 255, 255, 0.76);
   border: 1px solid rgba(255, 255, 255, 0.72);
   box-shadow: 0 20px 38px rgba(11, 45, 109, 0.14);
-  width: 100%;
   max-width: 340px;
-  margin: 0;
-  justify-self: stretch;
+  margin: 0 auto;
+  justify-self: center;
 }
 
 .hero-logo {
@@ -496,7 +493,7 @@ textarea:focus-visible {
   width: 100%;
   max-width: 340px;
   margin: 0;
-  justify-self: stretch;
+  justify-self: start;
   justify-items: stretch;
   text-align: left;
 }
