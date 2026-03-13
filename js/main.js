@@ -102,6 +102,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  const topbar = document.querySelector(".topbar");
+  if (topbar) {
+    const updateTopbarState = function () {
+      topbar.classList.toggle("is-scrolled", window.scrollY > 12);
+    };
+
+    updateTopbarState();
+    window.addEventListener("scroll", updateTopbarState, { passive: true });
+  }
+
   const toggle = document.querySelector("[data-menu-toggle]");
   const menu = document.querySelector("[data-nav-links]");
 
@@ -152,7 +162,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ".work-card",
     ".social-card",
     ".photo-placeholder",
-    ".quote-band"
+    ".quote-band",
+    ".about-photo"
   ];
 
   const revealTargets = Array.from(document.querySelectorAll(revealSelectors.join(", ")));
@@ -180,8 +191,8 @@ document.addEventListener("DOMContentLoaded", function () {
           child.classList.add("reveal-soft");
         }
 
-        const delayStep = compactMotion ? 32 : 58;
-        const maxDelay = compactMotion ? 180 : 360;
+        const delayStep = compactMotion ? 28 : 64;
+        const maxDelay = compactMotion ? 120 : 420;
         const delay = Math.min(index * delayStep, maxDelay);
         child.style.setProperty("--reveal-delay", delay + "ms");
 
@@ -194,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelectorAll(".section").forEach(function (section, index) {
     if (!section.style.getPropertyValue("--reveal-delay")) {
-      const baseDelay = compactMotion ? 0 : Math.min(index * 30, 140);
+      const baseDelay = compactMotion ? 0 : Math.min(index * 24, 144);
       section.style.setProperty("--reveal-delay", baseDelay + "ms");
     }
 
@@ -220,7 +231,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         });
       },
-      { rootMargin: "0px 0px -9% 0px", threshold: 0.14 }
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.14 }
     );
 
     revealTargets.forEach(function (el) {
@@ -233,19 +244,20 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (!reduceMotion && !compactMotion) {
-    const parallaxTargets = document.querySelectorAll(
-      ".hero-visual, .hero-visual-inner, .quote-band, .photo-placeholder, .work-image"
+    const parallaxTargets = Array.from(
+      document.querySelectorAll(".hero-visual, .hero-card-main, .quote-band, .photo-placeholder, .work-image, .page-hero-panel")
     );
 
-    parallaxTargets.forEach(function (el) {
+    parallaxTargets.forEach(function (el, index) {
       el.classList.add("parallax-item");
+      el.setAttribute("data-parallax-depth", index % 3 === 0 ? "12" : index % 2 === 0 ? "9" : "6");
       el.style.setProperty("--parallax-y", "0px");
     });
 
     const updateParallax = function () {
       const viewportHeight = window.innerHeight || 1;
 
-      parallaxTargets.forEach(function (el, index) {
+      parallaxTargets.forEach(function (el) {
         const rect = el.getBoundingClientRect();
         if (rect.bottom < -120 || rect.top > viewportHeight + 120) {
           return;
@@ -253,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const centerDelta = rect.top + rect.height / 2 - viewportHeight / 2;
         const progress = centerDelta / viewportHeight;
-        const maxShift = index % 2 === 0 ? 10 : 7;
+        const maxShift = Number(el.getAttribute("data-parallax-depth")) || 8;
         const y = Math.max(-maxShift, Math.min(maxShift, -progress * maxShift));
 
         el.style.setProperty("--parallax-y", y.toFixed(2) + "px");
@@ -263,18 +275,17 @@ document.addEventListener("DOMContentLoaded", function () {
     updateParallax();
 
     let ticking = false;
-    window.addEventListener(
-      "scroll",
-      function () {
-        if (!ticking) {
-          window.requestAnimationFrame(function () {
-            updateParallax();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      },
-      { passive: true }
-    );
+    const requestParallaxUpdate = function () {
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          updateParallax();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
+    window.addEventListener("resize", requestParallaxUpdate);
   }
 });
