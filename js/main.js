@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
+  if (document.body) {
+    window.requestAnimationFrame(function () {
+      document.body.classList.add("is-ready");
+    });
+  }
+
   const data = window.siteData || {};
 
   document.querySelectorAll("[data-business-name]").forEach(function (el) {
