@@ -438,6 +438,8 @@ textarea:focus-visible {
 .nav-links .button-primary {
   padding-inline: 1.25rem;
   border: 1px solid rgba(18, 34, 47, 0.24);
+  color: #081118;
+  text-shadow: none;
 }
 
 .menu-toggle {
