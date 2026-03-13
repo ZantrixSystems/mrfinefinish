@@ -1,4 +1,157 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const consentStorageKey = "mrfinefinish-cookie-consent";
+  let optionalResourcesLoaded = false;
+
+  const readConsentChoice = function () {
+    try {
+      return window.localStorage.getItem(consentStorageKey);
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const storeConsentChoice = function (value) {
+    try {
+      window.localStorage.setItem(consentStorageKey, value);
+    } catch (error) {
+      return;
+    }
+  };
+
+  const createTiktokEmbed = function (host) {
+    const username = host.getAttribute("data-tiktok-username");
+    if (!username) {
+      return;
+    }
+
+    host.innerHTML = "";
+
+    const blockquote = document.createElement("blockquote");
+    blockquote.className = "tiktok-embed";
+    blockquote.setAttribute("cite", "https://www.tiktok.com/@" + username);
+    blockquote.setAttribute("data-unique-id", username);
+    blockquote.setAttribute("data-embed-type", "creator");
+    blockquote.style.maxWidth = "780px";
+    blockquote.style.minWidth = "280px";
+
+    const section = document.createElement("section");
+    const link = document.createElement("a");
+    link.href = "https://www.tiktok.com/@" + username + "?refer=creator_embed";
+    link.target = "_blank";
+    link.rel = "noreferrer";
+    link.textContent = "@" + username;
+    section.appendChild(link);
+    blockquote.appendChild(section);
+    host.appendChild(blockquote);
+  };
+
+  const loadOptionalResources = function () {
+    if (optionalResourcesLoaded) {
+      return;
+    }
+
+    document.querySelectorAll("[data-cookie-href]").forEach(function (el) {
+      const href = el.getAttribute("data-cookie-href");
+      const rel = el.getAttribute("data-cookie-rel");
+
+      if (href) {
+        el.setAttribute("href", href);
+      }
+
+      if (rel) {
+        el.setAttribute("rel", rel);
+      }
+
+      el.removeAttribute("data-cookie-href");
+      el.removeAttribute("data-cookie-rel");
+    });
+
+    document.querySelectorAll('[data-cookie-embed="tiktok"]').forEach(function (host) {
+      createTiktokEmbed(host);
+    });
+
+    if (!document.querySelector('script[src="https://www.tiktok.com/embed.js"]')) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.tiktok.com/embed.js";
+      document.body.appendChild(script);
+    }
+
+    optionalResourcesLoaded = true;
+  };
+
+  const ensureDeclinedPlaceholders = function () {
+    document.querySelectorAll('[data-cookie-embed="tiktok"]').forEach(function (host) {
+      if (!host.querySelector(".consent-embed-placeholder")) {
+        host.innerHTML =
+          '<div class="consent-embed-placeholder">' +
+          "<strong>TikTok content is optional.</strong>" +
+          '<p class="small-text">You declined optional cookies, so this preview stays off. You can still open the TikTok profile directly using the page link.</p>' +
+          "</div>";
+      }
+    });
+  };
+
+  const updateConsentState = function (choice) {
+    if (document.body) {
+      document.body.setAttribute("data-cookie-consent", choice || "pending");
+    }
+
+    if (choice === "accepted") {
+      loadOptionalResources();
+    } else {
+      ensureDeclinedPlaceholders();
+    }
+  };
+
+  const renderConsentBanner = function () {
+    if (document.querySelector("[data-cookie-banner]")) {
+      return;
+    }
+
+    const banner = document.createElement("aside");
+    banner.className = "cookie-banner";
+    banner.setAttribute("data-cookie-banner", "");
+    banner.setAttribute("aria-label", "Cookie consent");
+    banner.innerHTML =
+      '<div class="cookie-banner__copy">' +
+      "<strong>Cookies and external content</strong>" +
+      '<p class="small-text">This site can load optional third-party content such as Google Fonts and TikTok previews. Accept to allow that content, or decline to keep only essential site features. We only store your choice so the banner does not keep reappearing.</p>' +
+      "</div>" +
+      '<div class="cookie-banner__actions">' +
+      '<button type="button" class="button button-secondary" data-cookie-decline>Decline</button>' +
+      '<button type="button" class="button button-primary" data-cookie-accept>Accept</button>' +
+      "</div>";
+
+    document.body.appendChild(banner);
+
+    const dismissBanner = function () {
+      banner.classList.add("is-hidden");
+      window.setTimeout(function () {
+        banner.remove();
+      }, 220);
+    };
+
+    banner.querySelector("[data-cookie-accept]").addEventListener("click", function () {
+      storeConsentChoice("accepted");
+      updateConsentState("accepted");
+      dismissBanner();
+    });
+
+    banner.querySelector("[data-cookie-decline]").addEventListener("click", function () {
+      storeConsentChoice("declined");
+      updateConsentState("declined");
+      dismissBanner();
+    });
+  };
+
+  const consentChoice = readConsentChoice();
+  updateConsentState(consentChoice);
+
+  if (!consentChoice) {
+    renderConsentBanner();
+  }
+
   const currentPath = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
   const navItems = [
     { href: "index.html", label: "Home" },
@@ -176,7 +329,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       };
 
-      if (!document.querySelector('script[src="https://www.instagram.com/embed.js"]')) {
+      if (readConsentChoice() !== "accepted") {
+        showFallback(true);
+      } else if (!document.querySelector('script[src="https://www.instagram.com/embed.js"]')) {
         const script = document.createElement("script");
         script.async = true;
         script.src = "https://www.instagram.com/embed.js";
